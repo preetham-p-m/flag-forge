@@ -35,30 +35,32 @@ public class EvaluationService {
                 RuleType.USER_ID, userId.toString(), flagId);
         if (userFlagRule.isPresent() &&
                 Boolean.TRUE.equals(userFlagRule.get().getRuleEnabled())) {
-            return createEvaluatedFlagFromFlagRule(userFlagRule.get(), user);
+            return createEvaluatedFlagFromRule(userFlagRule.get(), featureFlag, user);
         }
 
         var customerFlagRule = flagRuleService.findByRuleTypeAndRuleValueAndFeatureFlag_Id(
                 RuleType.CUSTOMER_ID, user.getCustomer().getId().toString(), flagId);
         if (customerFlagRule.isPresent() &&
                 Boolean.TRUE.equals(customerFlagRule.get().getRuleEnabled())) {
-            return createEvaluatedFlagFromFlagRule(customerFlagRule.get(), user);
+            return createEvaluatedFlagFromRule(customerFlagRule.get(), featureFlag, user);
         }
 
-        return createEvaluatedFlagFromFeatureFlag(featureFlag, user);
+        return createEvaluatedFlagFromDefault(featureFlag, user);
     }
 
-    private static EvaluatedFlag createEvaluatedFlagFromFlagRule(FlagRule flagRule, User user) {
+    private static EvaluatedFlag createEvaluatedFlagFromRule(
+            FlagRule flagRule, FeatureFlag featureFlag, User user) {
         return EvaluatedFlag.builder()
                 .customerId(user.getCustomer().getId())
                 .userId(user.getId())
-                .flagId(flagRule.getFeatureFlag().getId())
-                .flagKey(flagRule.getFeatureFlag().getFlagKey())
+                .flagId(featureFlag.getId())
+                .flagKey(featureFlag.getFlagKey())
                 .flagValue(flagRule.getTargetValue())
                 .build();
     }
 
-    private static EvaluatedFlag createEvaluatedFlagFromFeatureFlag(FeatureFlag featureFlag, User user) {
+    private static EvaluatedFlag createEvaluatedFlagFromDefault(
+            FeatureFlag featureFlag, User user) {
         return EvaluatedFlag.builder()
                 .customerId(user.getCustomer().getId())
                 .userId(user.getId())
