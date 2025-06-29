@@ -9,5 +9,5 @@ import lombok.Setter;
 @Setter
 public class FlagDefinitionWrapper {
 
-    private List<FlagDefinition> flags;
+    private List<FeatureFlagDto> flags;
 }

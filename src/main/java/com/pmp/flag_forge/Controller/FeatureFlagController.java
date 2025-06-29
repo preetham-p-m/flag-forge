@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pmp.flag_forge.Model.FeatureFlag;
-import com.pmp.flag_forge.Model.FlagDefinition;
+import com.pmp.flag_forge.Model.FeatureFlagDto;
 import com.pmp.flag_forge.Service.FeatureFlagService;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +27,7 @@ public class FeatureFlagController {
     private final FeatureFlagService featureFlagService;
 
     @PostMapping
-    public ResponseEntity<FeatureFlag> create(@RequestBody @Validated FlagDefinition flagDefinition) {
+    public ResponseEntity<FeatureFlag> create(@RequestBody @Validated FeatureFlagDto flagDefinition) {
         var featureFlag = this.featureFlagService.create(flagDefinition);
         return ResponseEntity.status(HttpStatus.CREATED).body(featureFlag);
     }
@@ -46,7 +46,7 @@ public class FeatureFlagController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<FeatureFlag> patchUpdate(@PathVariable UUID id,
-            @RequestBody FlagDefinition flagDefinition) {
+            @RequestBody FeatureFlagDto flagDefinition) {
         var featureFlag = featureFlagService.patchUpdate(id, flagDefinition);
         return ResponseEntity.ok(featureFlag);
     }

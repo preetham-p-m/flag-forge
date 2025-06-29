@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.pmp.flag_forge.Exception.Error.FlagNotFoundException;
 import com.pmp.flag_forge.Model.FeatureFlag;
-import com.pmp.flag_forge.Model.FlagDefinition;
+import com.pmp.flag_forge.Model.FeatureFlagDto;
 import com.pmp.flag_forge.Repository.FeatureFlagRepository;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 public class FeatureFlagService {
     private final FeatureFlagRepository featureFlagRepository;
 
-    public FeatureFlag create(FlagDefinition def) {
+    public FeatureFlag create(FeatureFlagDto def) {
         FeatureFlag newFlag = FeatureFlag.builder()
                 .flagKey(def.getFlagKey())
                 .name(def.getName())
@@ -43,12 +43,12 @@ public class FeatureFlagService {
                 .orElseThrow(() -> new FlagNotFoundException("Feature flag not found for flag key " + flagKey));
     }
 
-    public FeatureFlag patchUpdate(UUID id, FlagDefinition flagDefinition) {
+    public FeatureFlag patchUpdate(UUID id, FeatureFlagDto flagDefinition) {
         var featureFlag = this.getById(id);
         return patchUpdateInternal(featureFlag, flagDefinition);
     }
 
-    public FeatureFlag patchUpdate(String flagKey, FlagDefinition flagDefinition) {
+    public FeatureFlag patchUpdate(String flagKey, FeatureFlagDto flagDefinition) {
         var featureFlag = this.getByFlagKey(flagKey);
         return patchUpdateInternal(featureFlag, flagDefinition);
     }
@@ -69,7 +69,7 @@ public class FeatureFlagService {
         return this.featureFlagRepository.save(featureFlag);
     }
 
-    private FeatureFlag patchUpdateInternal(FeatureFlag featureFlag, FlagDefinition flagDefinition) {
+    private FeatureFlag patchUpdateInternal(FeatureFlag featureFlag, FeatureFlagDto flagDefinition) {
 
         boolean hasChanges = false;
 

@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Size;
 
 @Setter
 @Getter
-public class FlagDefinition {
+public class FeatureFlagDto {
 
     @NotEmpty
     @Size(min = 5, max = 256, message = "FlagKey must be between 5 and 256 characters")
