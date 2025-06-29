@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.pmp.flag_forge.Exception.Error.FlagNotFoundException;
 import com.pmp.flag_forge.Model.FeatureFlag;
 import com.pmp.flag_forge.Model.FlagDefinition;
 import com.pmp.flag_forge.Repository.FeatureFlagRepository;
@@ -35,13 +36,13 @@ public class FeatureFlagService {
 
     public FeatureFlag getById(UUID id) {
         return featureFlagRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Feature flag not found for id " + id));
+                .orElseThrow(() -> new FlagNotFoundException("Feature flag not found for id " + id));
     }
 
     public FeatureFlag getByFlagKey(String flagKey) {
         return featureFlagRepository.findByFlagKey(
                 flagKey)
-                .orElseThrow(() -> new RuntimeException("Feature flag not found for flag key " + flagKey));
+                .orElseThrow(() -> new FlagNotFoundException("Feature flag not found for flag key " + flagKey));
     }
 
     public FeatureFlag patchUpdate(UUID id, FlagDefinition flagDefinition) {
