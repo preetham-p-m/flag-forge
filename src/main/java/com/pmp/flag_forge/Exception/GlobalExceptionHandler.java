@@ -10,8 +10,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.pmp.flag_forge.Configuration.AppConfiguration;
 import com.pmp.flag_forge.Constant.Environment;
-import com.pmp.flag_forge.Exception.Error.FlagForgeError;
 import com.pmp.flag_forge.Exception.Error.FlagForgeNotFoundException;
+import com.pmp.flag_forge.Exception.Response.FlagForgeErrorResponse;
 
 import lombok.AllArgsConstructor;
 
@@ -21,27 +21,27 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private final AppConfiguration appConfiguration;
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<FlagForgeError> handleAllException(Exception ex,
+    public final ResponseEntity<FlagForgeErrorResponse> handleAllException(Exception ex,
             WebRequest request) throws Exception {
-        FlagForgeError error = getResponse(ex);
+        FlagForgeErrorResponse error = getResponse(ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 
     @ExceptionHandler({ NotFound.class, FlagForgeNotFoundException.class })
-    public final ResponseEntity<FlagForgeError> handleFlagNotFoundException(Exception ex,
+    public final ResponseEntity<FlagForgeErrorResponse> handleFlagNotFoundException(Exception ex,
             WebRequest request) {
-        FlagForgeError error = getResponse(ex);
+        FlagForgeErrorResponse error = getResponse(ex);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
-    private FlagForgeError getResponse(Exception ex) {
+    private FlagForgeErrorResponse getResponse(Exception ex) {
         var environment = this.appConfiguration.getGeneral().getEnvironment();
 
         if (environment.equals(Environment.DEVELOPMENT)) {
-            return new FlagForgeError(ex.getMessage(), ex.getCause());
+            return new FlagForgeErrorResponse(ex.getMessage(), ex.getCause());
         }
 
-        return new FlagForgeError(ex.getMessage());
+        return new FlagForgeErrorResponse(ex.getMessage());
     }
 
 }

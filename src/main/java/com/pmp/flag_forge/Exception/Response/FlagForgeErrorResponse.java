@@ -1,4 +1,4 @@
-package com.pmp.flag_forge.Exception.Error;
+package com.pmp.flag_forge.Exception.Response;
 
 import java.time.LocalDateTime;
 
@@ -7,19 +7,19 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class FlagForgeError {
+public class FlagForgeErrorResponse {
 
     private final String message;
     private final LocalDateTime timeStamp;
     private final Throwable cause;
 
-    public FlagForgeError(String message) {
+    public FlagForgeErrorResponse(String message) {
         this.message = message;
         this.cause = null;
         this.timeStamp = LocalDateTime.now();
     }
 
-    public FlagForgeError(String message, Throwable cause) {
+    public FlagForgeErrorResponse(String message, Throwable cause) {
         this.message = message;
         this.cause = cause;
         this.timeStamp = LocalDateTime.now();
