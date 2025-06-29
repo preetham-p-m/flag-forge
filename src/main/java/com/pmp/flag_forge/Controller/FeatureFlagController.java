@@ -3,8 +3,8 @@ package com.pmp.flag_forge.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pmp.flag_forge.Model.FeatureFlag;
-import com.pmp.flag_forge.Model.FeatureFlagDto;
+import com.pmp.flag_forge.Model.FeatureFlag.FeatureFlag;
+import com.pmp.flag_forge.Model.FeatureFlag.FeatureFlagDto;
 import com.pmp.flag_forge.Service.FeatureFlagService;
 
 import lombok.AllArgsConstructor;

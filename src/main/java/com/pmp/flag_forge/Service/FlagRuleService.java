@@ -5,10 +5,10 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import com.pmp.flag_forge.Exception.Error.FlagForgeNotFoundException;
-import com.pmp.flag_forge.Model.FlagRule;
-import com.pmp.flag_forge.Model.FlagRuleDto;
-import com.pmp.flag_forge.Model.FlagRuleHelper;
-import com.pmp.flag_forge.Model.RuleType;
+import com.pmp.flag_forge.Model.FlagRule.FlagRule;
+import com.pmp.flag_forge.Model.FlagRule.FlagRuleDto;
+import com.pmp.flag_forge.Model.FlagRule.FlagRuleHelper;
+import com.pmp.flag_forge.Model.FlagRule.RuleType;
 import com.pmp.flag_forge.Repository.FlagRuleRepository;
 
 import lombok.AllArgsConstructor;

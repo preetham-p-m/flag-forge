@@ -5,9 +5,9 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.pmp.flag_forge.Exception.Error.FlagForgeNotFoundException;
-import com.pmp.flag_forge.Model.User;
-import com.pmp.flag_forge.Model.UserDto;
-import com.pmp.flag_forge.Model.UserHelper;
+import com.pmp.flag_forge.Model.User.User;
+import com.pmp.flag_forge.Model.User.UserDto;
+import com.pmp.flag_forge.Model.User.UserHelper;
 import com.pmp.flag_forge.Repository.UserRepository;
 
 import lombok.AllArgsConstructor;

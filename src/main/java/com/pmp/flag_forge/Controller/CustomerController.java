@@ -3,8 +3,8 @@ package com.pmp.flag_forge.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pmp.flag_forge.Model.Customer;
-import com.pmp.flag_forge.Model.CustomerDto;
+import com.pmp.flag_forge.Model.Customer.Customer;
+import com.pmp.flag_forge.Model.Customer.CustomerDto;
 import com.pmp.flag_forge.Service.CustomerService;
 
 import jakarta.validation.Valid;

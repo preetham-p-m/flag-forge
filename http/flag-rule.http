@@ -1,0 +1,10 @@
+POST http://localhost:8080/api/v1/flag-rules
+Content-Type: application/json
+
+{
+  "ruleValue": "3888f0d3-9b38-465d-82cb-c9aee3bdcab5",
+  "ruleType": "USER_ID",
+  "featureFlagId": "ada14b07-b823-4523-9ccf-31524a0cf3ee",
+  "targetValue": true,
+  "ruleOperator": "EQUALS"
+}

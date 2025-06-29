@@ -1,4 +1,4 @@
-package com.pmp.flag_forge.Model;
+package com.pmp.flag_forge.Model.FlagRule;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
+
+import com.pmp.flag_forge.Model.FeatureFlag.FeatureFlag;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,8 +23,10 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "flag_rules", indexes = {
@@ -35,6 +39,8 @@ import lombok.Data;
 })
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class FlagRule {
 
     @Id

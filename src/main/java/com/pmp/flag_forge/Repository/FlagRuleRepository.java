@@ -5,8 +5,8 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.pmp.flag_forge.Model.FlagRule;
-import com.pmp.flag_forge.Model.RuleType;
+import com.pmp.flag_forge.Model.FlagRule.FlagRule;
+import com.pmp.flag_forge.Model.FlagRule.RuleType;
 
 public interface FlagRuleRepository extends JpaRepository<FlagRule, UUID> {
 

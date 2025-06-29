@@ -1,4 +1,4 @@
-package com.pmp.flag_forge.Model;
+package com.pmp.flag_forge.Model.Customer;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

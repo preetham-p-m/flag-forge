@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.UUID;
 
+import com.pmp.flag_forge.Model.User.User;
+import com.pmp.flag_forge.Model.User.UserDto;
 import com.pmp.flag_forge.Service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-
-import com.pmp.flag_forge.Model.User;
-import com.pmp.flag_forge.Model.UserDto;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

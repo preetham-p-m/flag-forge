@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.pmp.flag_forge.Exception.Error.FlagForgeException;
 import com.pmp.flag_forge.Model.EvaluatedFlag;
-import com.pmp.flag_forge.Model.FeatureFlag;
-import com.pmp.flag_forge.Model.FlagRule;
-import com.pmp.flag_forge.Model.FlagStatus;
-import com.pmp.flag_forge.Model.RuleType;
-import com.pmp.flag_forge.Model.User;
+import com.pmp.flag_forge.Model.FeatureFlag.FeatureFlag;
+import com.pmp.flag_forge.Model.FeatureFlag.FlagStatus;
+import com.pmp.flag_forge.Model.FlagRule.FlagRule;
+import com.pmp.flag_forge.Model.FlagRule.RuleType;
+import com.pmp.flag_forge.Model.User.User;
 
 import lombok.AllArgsConstructor;
 

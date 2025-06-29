@@ -1,4 +1,4 @@
-package com.pmp.flag_forge.Model;
+package com.pmp.flag_forge.Model.FeatureFlag;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

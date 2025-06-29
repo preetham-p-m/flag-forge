@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pmp.flag_forge.Model.FeatureFlag;
+import com.pmp.flag_forge.Model.FeatureFlag.FeatureFlag;
 
 @Repository
 public interface FeatureFlagRepository extends JpaRepository<FeatureFlag, UUID> {

@@ -1,10 +1,12 @@
-package com.pmp.flag_forge.Model;
+package com.pmp.flag_forge.Model.User;
 
 import java.util.UUID;
 
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
+
+import com.pmp.flag_forge.Model.Customer.Customer;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

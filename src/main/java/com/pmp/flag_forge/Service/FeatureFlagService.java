@@ -5,8 +5,8 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.pmp.flag_forge.Exception.Error.FlagForgeNotFoundException;
-import com.pmp.flag_forge.Model.FeatureFlag;
-import com.pmp.flag_forge.Model.FeatureFlagDto;
+import com.pmp.flag_forge.Model.FeatureFlag.FeatureFlag;
+import com.pmp.flag_forge.Model.FeatureFlag.FeatureFlagDto;
 import com.pmp.flag_forge.Repository.FeatureFlagRepository;
 
 import lombok.AllArgsConstructor;

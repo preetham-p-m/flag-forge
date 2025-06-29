@@ -2,8 +2,8 @@ package com.pmp.flag_forge.Controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pmp.flag_forge.Model.FlagRule;
-import com.pmp.flag_forge.Model.FlagRuleDto;
+import com.pmp.flag_forge.Model.FlagRule.FlagRule;
+import com.pmp.flag_forge.Model.FlagRule.FlagRuleDto;
 import com.pmp.flag_forge.Service.FlagRuleService;
 
 import jakarta.validation.Valid;

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.pmp.flag_forge.Configuration.AppConfiguration;
-import com.pmp.flag_forge.Model.FeatureFlagDto;
 import com.pmp.flag_forge.Model.FlagDefinitionWrapper;
+import com.pmp.flag_forge.Model.FeatureFlag.FeatureFlagDto;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

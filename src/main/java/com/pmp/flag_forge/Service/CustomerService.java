@@ -5,9 +5,9 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.pmp.flag_forge.Exception.Error.FlagForgeNotFoundException;
-import com.pmp.flag_forge.Model.Customer;
-import com.pmp.flag_forge.Model.CustomerDto;
-import com.pmp.flag_forge.Model.CustomerHelper;
+import com.pmp.flag_forge.Model.Customer.Customer;
+import com.pmp.flag_forge.Model.Customer.CustomerDto;
+import com.pmp.flag_forge.Model.Customer.CustomerHelper;
 import com.pmp.flag_forge.Repository.CustomerRepository;
 
 import lombok.AllArgsConstructor;
