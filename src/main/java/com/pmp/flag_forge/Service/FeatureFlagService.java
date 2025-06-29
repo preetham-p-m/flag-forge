@@ -29,22 +29,29 @@ public class FeatureFlagService {
         return this.featureFlagRepository.save(newFlag);
     }
 
-    public FeatureFlag patchUpdate(UUID id, FlagDefinition flagDefinition) {
-        FeatureFlag featureFlag = featureFlagRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Feature flag not found for id " + id));
+    public boolean doesExistsByFlagKey(String flagKey) {
+        return featureFlagRepository.existsByFlagKey(flagKey);
+    }
 
+    public FeatureFlag getById(UUID id) {
+        return featureFlagRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Feature flag not found for id " + id));
+    }
+
+    public FeatureFlag getByFlagKey(String flagKey) {
+        return featureFlagRepository.findByFlagKey(
+                flagKey)
+                .orElseThrow(() -> new RuntimeException("Feature flag not found for flag key " + flagKey));
+    }
+
+    public FeatureFlag patchUpdate(UUID id, FlagDefinition flagDefinition) {
+        var featureFlag = this.getById(id);
         return patchUpdateInternal(featureFlag, flagDefinition);
     }
 
     public FeatureFlag patchUpdate(String flagKey, FlagDefinition flagDefinition) {
-        FeatureFlag featureFlag = featureFlagRepository.findByFlagKey(flagKey)
-                .orElseThrow(() -> new RuntimeException("Feature flag not found for id " + flagKey));
-
+        var featureFlag = this.getByFlagKey(flagKey);
         return patchUpdateInternal(featureFlag, flagDefinition);
-    }
-
-    public boolean doesFlagExists(String flagKey) {
-        return featureFlagRepository.existsByFlagKey(flagKey);
     }
 
     private FeatureFlag patchUpdateInternal(FeatureFlag featureFlag, FlagDefinition flagDefinition) {

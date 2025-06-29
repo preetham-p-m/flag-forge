@@ -23,7 +23,7 @@ public class FeatureFlagSeeder implements ApplicationRunner {
         var flagDefinitions = featureFlagLoader.loadFlagDefinitions();
 
         for (var flagDefinition : flagDefinitions) {
-            if (featureFlagService.doesFlagExists(flagDefinition.getFlagKey())) {
+            if (featureFlagService.doesExistsByFlagKey(flagDefinition.getFlagKey())) {
                 featureFlagService.patchUpdate(flagDefinition.getFlagKey(), flagDefinition);
             } else {
                 featureFlagService.create(flagDefinition);
