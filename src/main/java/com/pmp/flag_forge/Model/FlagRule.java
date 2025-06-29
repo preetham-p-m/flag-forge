@@ -26,8 +26,8 @@ import lombok.Data;
 
 @Entity
 @Table(name = "flag_rules", indexes = {
-        @Index(name = "idx_flag_rule_feature_flag_id", columnList = "feature_flag_id"),
         @Index(name = "idx_flag_rules_type_value", columnList = "rule_type, rule_value"),
+        @Index(name = "idx_flag_rules_by_type_value_flag_id", columnList = "rule_type, rule_value, feature_flag_id")
 }, uniqueConstraints = {
         @UniqueConstraint(name = "uq_flag_rule_combination", columnNames = {
                 "feature_flag_id", "rule_type", "rule_operator", "rule_value", "target_value"

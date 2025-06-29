@@ -1,5 +1,6 @@
 package com.pmp.flag_forge.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +8,7 @@ import com.pmp.flag_forge.Exception.Error.FlagForgeNotFoundException;
 import com.pmp.flag_forge.Model.FlagRule;
 import com.pmp.flag_forge.Model.FlagRuleDto;
 import com.pmp.flag_forge.Model.FlagRuleHelper;
+import com.pmp.flag_forge.Model.RuleType;
 import com.pmp.flag_forge.Repository.FlagRuleRepository;
 
 import lombok.AllArgsConstructor;
@@ -39,5 +41,11 @@ public class FlagRuleService {
         flagRule.setRuleEnabled(newStatus);
 
         return this.flagRuleRepository.save(flagRule);
+    }
+
+    public Optional<FlagRule> findByRuleTypeAndRuleValueAndFeatureFlag_Id(
+            RuleType ruleType, String ruleValue, UUID flagId) {
+        return flagRuleRepository.findByRuleTypeAndRuleValueAndFeatureFlag_Id(
+                ruleType, ruleValue, flagId);
     }
 }
