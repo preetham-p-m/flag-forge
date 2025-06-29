@@ -8,7 +8,9 @@
     "nbdist",
     "nbproject",
     "redeployments",
-    "rollouts"
+    "rollouts",
+    "springdoc",
+    "webmvc"
   ],
   "java.configuration.updateBuildConfiguration": "interactive"
 }
