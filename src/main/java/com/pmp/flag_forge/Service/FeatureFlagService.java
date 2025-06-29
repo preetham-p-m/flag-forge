@@ -55,6 +55,22 @@ public class FeatureFlagService {
         return patchUpdateInternal(featureFlag, flagDefinition);
     }
 
+    public FeatureFlag toggleById(UUID id) {
+        var featureFlag = this.getById(id);
+        return toggleFlagInternal(featureFlag);
+    }
+
+    public FeatureFlag toggleByFlagKey(String flagKey) {
+        var featureFlag = this.getByFlagKey(flagKey);
+        return toggleFlagInternal(featureFlag);
+    }
+
+    private FeatureFlag toggleFlagInternal(FeatureFlag featureFlag) {
+        var newValue = featureFlag.getDefaultValue() == true ? false : true;
+        featureFlag.setDefaultValue(newValue);
+        return this.featureFlagRepository.save(featureFlag);
+    }
+
     private FeatureFlag patchUpdateInternal(FeatureFlag featureFlag, FlagDefinition flagDefinition) {
 
         boolean hasChanges = false;

@@ -51,4 +51,16 @@ public class FeatureFlagController {
         var featureFlag = featureFlagService.patchUpdate(id, flagDefinition);
         return ResponseEntity.ok(featureFlag);
     }
+
+    @PatchMapping("/toggle/{id}")
+    public ResponseEntity<FeatureFlag> toggleById(@PathVariable UUID id) {
+        var featureFlag = featureFlagService.toggleById(id);
+        return ResponseEntity.ok(featureFlag);
+    }
+
+    @PatchMapping("/toggle/flag-key/{flagKey}")
+    public ResponseEntity<FeatureFlag> toggleByFlagKey(@PathVariable String flagKey) {
+        var featureFlag = featureFlagService.toggleByFlagKey(flagKey);
+        return ResponseEntity.ok(featureFlag);
+    }
 }
