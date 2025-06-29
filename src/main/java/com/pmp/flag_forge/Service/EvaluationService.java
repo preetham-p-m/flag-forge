@@ -21,9 +21,18 @@ public class EvaluationService {
     private final FeatureFlagService featureFlagService;
     private final UserService userService;
 
-    public EvaluatedFlag getFlagsStatusByUserIdAndFlagId(UUID userId, UUID flagId) {
-        var user = userService.getById(userId);
+    public EvaluatedFlag evaluateByUserIdAndFlagKey(UUID userId, String flagKey) {
+        var featureFlag = featureFlagService.getByFlagKey(flagKey);
+        return evaluateFlagForUserInternal(userId, featureFlag);
+    }
+
+    public EvaluatedFlag evaluateByUserIdAndFlagId(UUID userId, UUID flagId) {
         var featureFlag = featureFlagService.getById(flagId);
+        return evaluateFlagForUserInternal(userId, featureFlag);
+    }
+
+    public EvaluatedFlag evaluateFlagForUserInternal(UUID userId, FeatureFlag featureFlag) {
+        var user = userService.getById(userId);
 
         if (!featureFlag.getFlagStatus().equals(FlagStatus.ACTIVE)) {
             throw new FlagForgeException(
@@ -32,24 +41,24 @@ public class EvaluationService {
         }
 
         var userFlagRule = flagRuleService.findByRuleTypeAndRuleValueAndFeatureFlag_Id(
-                RuleType.USER_ID, userId.toString(), flagId);
+                RuleType.USER_ID, userId.toString(), featureFlag.getId());
         if (userFlagRule.isPresent() &&
                 Boolean.TRUE.equals(userFlagRule.get().getRuleEnabled())) {
-            return createEvaluatedFlagFromRule(userFlagRule.get(), featureFlag, user);
+            return createEvaluatedFlagFromRule(user, featureFlag, userFlagRule.get());
         }
 
         var customerFlagRule = flagRuleService.findByRuleTypeAndRuleValueAndFeatureFlag_Id(
-                RuleType.CUSTOMER_ID, user.getCustomer().getId().toString(), flagId);
+                RuleType.CUSTOMER_ID, user.getCustomer().getId().toString(), featureFlag.getId());
         if (customerFlagRule.isPresent() &&
                 Boolean.TRUE.equals(customerFlagRule.get().getRuleEnabled())) {
-            return createEvaluatedFlagFromRule(customerFlagRule.get(), featureFlag, user);
+            return createEvaluatedFlagFromRule(user, featureFlag, customerFlagRule.get());
         }
 
-        return createEvaluatedFlagFromDefault(featureFlag, user);
+        return createEvaluatedFlagFromDefault(user, featureFlag);
     }
 
     private static EvaluatedFlag createEvaluatedFlagFromRule(
-            FlagRule flagRule, FeatureFlag featureFlag, User user) {
+            User user, FeatureFlag featureFlag, FlagRule flagRule) {
         return EvaluatedFlag.builder()
                 .customerId(user.getCustomer().getId())
                 .userId(user.getId())
@@ -60,7 +69,7 @@ public class EvaluationService {
     }
 
     private static EvaluatedFlag createEvaluatedFlagFromDefault(
-            FeatureFlag featureFlag, User user) {
+            User user, FeatureFlag featureFlag) {
         return EvaluatedFlag.builder()
                 .customerId(user.getCustomer().getId())
                 .userId(user.getId())

@@ -21,10 +21,18 @@ public class EvaluationController {
     private final EvaluationService evaluationService;
 
     @GetMapping("user/{userId}/flag/{flagId}")
-    public ResponseEntity<EvaluatedFlag> getFlagsStatusByUserIdAndFlagId(
+    public ResponseEntity<EvaluatedFlag> evaluateByUserIdAndFlagId(
             @PathVariable UUID userId,
             @PathVariable UUID flagId) {
-        var result = evaluationService.getFlagsStatusByUserIdAndFlagId(userId, flagId);
+        var result = evaluationService.evaluateByUserIdAndFlagId(userId, flagId);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("user/{userId}/flag-key/{flagKey}")
+    public ResponseEntity<EvaluatedFlag> evaluateByUserIdAndFlagKey(
+            @PathVariable UUID userId,
+            @PathVariable String flagKey) {
+        var result = evaluationService.evaluateByUserIdAndFlagKey(userId, flagKey);
         return ResponseEntity.ok(result);
     }
 
