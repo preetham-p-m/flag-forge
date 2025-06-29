@@ -6,7 +6,9 @@
     "flag-forge",
     "nbbuild",
     "nbdist",
-    "nbproject"
+    "nbproject",
+    "redeployments",
+    "rollouts"
   ],
   "java.configuration.updateBuildConfiguration": "interactive"
 }

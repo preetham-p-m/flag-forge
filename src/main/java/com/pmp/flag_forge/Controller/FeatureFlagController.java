@@ -10,10 +10,13 @@ import com.pmp.flag_forge.Service.FeatureFlagService;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("api/v1/feature-flags")
@@ -22,6 +25,12 @@ public class FeatureFlagController {
 
     public FeatureFlagController(FeatureFlagService featureFlagService) {
         this.featureFlagService = featureFlagService;
+    }
+
+    @PostMapping
+    public ResponseEntity<FeatureFlag> create(@RequestBody @Validated FlagDefinition flagDefinition) {
+        var featureFlag = this.featureFlagService.create(flagDefinition);
+        return ResponseEntity.status(HttpStatus.CREATED).body(featureFlag);
     }
 
     @GetMapping("/{id}")
