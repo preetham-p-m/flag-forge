@@ -1,0 +1,12 @@
+flags:
+  - flagKey: enable_new_ui
+    name: Enable New UI
+    description: Toggle to enable the redesigned UI for selected users
+    defaultValue: false
+    managedBy: frontend-team
+
+  - flagKey: beta_invoice_flow
+    name: Beta Invoice Flow
+    description: Enables beta testing for the new invoice approval process
+    defaultValue: false
+    managedBy: finance-team
