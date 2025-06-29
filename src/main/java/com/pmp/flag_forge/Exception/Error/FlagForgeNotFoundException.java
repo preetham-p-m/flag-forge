@@ -5,9 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FlagNotFoundException extends RuntimeException {
+public class FlagForgeNotFoundException extends RuntimeException {
 
-    public FlagNotFoundException(String message) {
+    public FlagForgeNotFoundException(String message) {
         super(message);
     }
+
 }

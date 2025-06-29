@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.pmp.flag_forge.Configuration.AppConfiguration;
 import com.pmp.flag_forge.Constant.Environment;
 import com.pmp.flag_forge.Exception.Error.FlagForgeError;
-import com.pmp.flag_forge.Exception.Error.FlagNotFoundException;
+import com.pmp.flag_forge.Exception.Error.FlagForgeNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 
-    @ExceptionHandler({ NotFound.class, FlagNotFoundException.class })
+    @ExceptionHandler({ NotFound.class, FlagForgeNotFoundException.class })
     public final ResponseEntity<FlagForgeError> handleFlagNotFoundException(Exception ex,
             WebRequest request) {
         FlagForgeError error = getResponse(ex);

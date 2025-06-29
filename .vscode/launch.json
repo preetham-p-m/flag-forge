@@ -9,7 +9,7 @@
       "name": "FlagforgeApplication",
       "request": "launch",
       "mainClass": "com.pmp.flag_forge.FlagforgeApplication",
-      "projectName": "flagforge"
+      "projectName": "flag-forge"
     }
   ]
 }
