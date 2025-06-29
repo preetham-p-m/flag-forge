@@ -12,16 +12,14 @@ import com.pmp.flag_forge.Configuration.AppConfiguration;
 import com.pmp.flag_forge.Model.FlagDefinition;
 import com.pmp.flag_forge.Model.FlagDefinitionWrapper;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@AllArgsConstructor
 public class FeatureFlagLoader {
     private final AppConfiguration appConfiguration;
-
-    public FeatureFlagLoader(AppConfiguration appConfiguration) {
-        this.appConfiguration = appConfiguration;
-    }
 
     public List<FlagDefinition> loadFlagDefinitions() {
         var currentEnvironment = appConfiguration.getGeneral().getEnvironment();

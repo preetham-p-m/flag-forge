@@ -9,14 +9,12 @@ import com.pmp.flag_forge.Model.FeatureFlag;
 import com.pmp.flag_forge.Model.FlagDefinition;
 import com.pmp.flag_forge.Repository.FeatureFlagRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class FeatureFlagService {
-
     private final FeatureFlagRepository featureFlagRepository;
-
-    public FeatureFlagService(FeatureFlagRepository featureFlagRepository) {
-        this.featureFlagRepository = featureFlagRepository;
-    }
 
     public FeatureFlag create(FlagDefinition def) {
         FeatureFlag newFlag = FeatureFlag.builder()

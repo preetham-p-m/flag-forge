@@ -8,23 +8,16 @@ import com.pmp.flag_forge.Seed.Loader.FeatureFlagLoader;
 import com.pmp.flag_forge.Service.FeatureFlagService;
 
 import jakarta.validation.Validator;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
+@AllArgsConstructor
 public class FeatureFlagSeeder implements ApplicationRunner {
-
     private final FeatureFlagLoader featureFlagLoader;
     private final FeatureFlagService featureFlagService;
     private final Validator validator;
-
-    public FeatureFlagSeeder(FeatureFlagLoader featureFlagLoader,
-            FeatureFlagService featureFlagService,
-            Validator validator) {
-        this.featureFlagLoader = featureFlagLoader;
-        this.featureFlagService = featureFlagService;
-        this.validator = validator;
-    }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

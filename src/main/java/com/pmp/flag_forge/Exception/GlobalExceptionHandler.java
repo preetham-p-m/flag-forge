@@ -13,13 +13,12 @@ import com.pmp.flag_forge.Constant.Environment;
 import com.pmp.flag_forge.Exception.Error.FlagForgeError;
 import com.pmp.flag_forge.Exception.Error.FlagNotFoundException;
 
+import lombok.AllArgsConstructor;
+
 @ControllerAdvice
+@AllArgsConstructor
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private final AppConfiguration appConfiguration;
-
-    public GlobalExceptionHandler(AppConfiguration appConfiguration) {
-        this.appConfiguration = appConfiguration;
-    }
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<FlagForgeError> handleAllException(Exception ex,

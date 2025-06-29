@@ -7,6 +7,8 @@ import com.pmp.flag_forge.Model.FeatureFlag;
 import com.pmp.flag_forge.Model.FlagDefinition;
 import com.pmp.flag_forge.Service.FeatureFlagService;
 
+import lombok.AllArgsConstructor;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.UUID;
 
@@ -20,12 +22,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("api/v1/feature-flags")
+@AllArgsConstructor
 public class FeatureFlagController {
     private final FeatureFlagService featureFlagService;
-
-    public FeatureFlagController(FeatureFlagService featureFlagService) {
-        this.featureFlagService = featureFlagService;
-    }
 
     @PostMapping
     public ResponseEntity<FeatureFlag> create(@RequestBody @Validated FlagDefinition flagDefinition) {
