@@ -1,5 +1,6 @@
 package com.pmp.flag_forge.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -14,4 +15,9 @@ public interface FlagRuleRepository extends JpaRepository<FlagRule, UUID> {
             RuleType ruleType,
             String ruleValue,
             UUID featureFlagId);
+
+    List<FlagRule> findByRuleTypeAndRuleValueAndFeatureFlag_IdIn(
+            RuleType ruleType,
+            String ruleValue,
+            List<UUID> flagIds);
 }

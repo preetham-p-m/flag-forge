@@ -1,6 +1,7 @@
 package com.pmp.flag_forge.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pmp.flag_forge.Model.EvaluatedFlag;
@@ -8,6 +9,7 @@ import com.pmp.flag_forge.Service.EvaluationService;
 
 import lombok.AllArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,14 @@ public class EvaluationController {
             @PathVariable UUID userId,
             @PathVariable String flagKey) {
         var result = evaluationService.evaluateByUserIdAndFlagKey(userId, flagKey);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("user/{userId}/flag-keys")
+    public ResponseEntity<List<EvaluatedFlag>> evaluateByUserIdAndFlagKeys(
+            @PathVariable UUID userId,
+            @RequestParam List<String> flagKeys) {
+        var result = evaluationService.evaluateByUserIdAndFlagKeys(userId, flagKeys);
         return ResponseEntity.ok(result);
     }
 

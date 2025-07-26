@@ -1,5 +1,6 @@
 package com.pmp.flag_forge.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -47,5 +48,13 @@ public class FlagRuleService {
             RuleType ruleType, String ruleValue, UUID flagId) {
         return flagRuleRepository.findByRuleTypeAndRuleValueAndFeatureFlag_Id(
                 ruleType, ruleValue, flagId);
+    }
+
+    public List<FlagRule> findByRuleTypeAndRuleValueAndFeatureFlag_IdIn(
+            RuleType ruleType,
+            String ruleValue,
+            List<UUID> flagIds) {
+        return flagRuleRepository.findByRuleTypeAndRuleValueAndFeatureFlag_IdIn(
+                ruleType, ruleValue, flagIds);
     }
 }

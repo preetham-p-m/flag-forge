@@ -69,4 +69,7 @@ public class FeatureFlag {
         updatedAt = LocalDateTime.now();
     }
 
+    public boolean isActive() {
+        return this.flagStatus.equals(FlagStatus.ACTIVE);
+    }
 }

@@ -1,5 +1,6 @@
 package com.pmp.flag_forge.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -14,4 +15,6 @@ public interface FeatureFlagRepository extends JpaRepository<FeatureFlag, UUID> 
     boolean existsByFlagKey(String flagKey);
 
     Optional<FeatureFlag> findByFlagKey(String flagKey);
+
+    List<FeatureFlag> findByFlagKeyIn(List<String> flagKeys);
 }

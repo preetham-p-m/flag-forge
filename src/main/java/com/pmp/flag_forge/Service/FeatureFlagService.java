@@ -1,6 +1,9 @@
 package com.pmp.flag_forge.Service;
 
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -30,6 +33,25 @@ public class FeatureFlagService {
 
     public boolean doesExistsByFlagKey(String flagKey) {
         return featureFlagRepository.existsByFlagKey(flagKey);
+    }
+
+    public List<FeatureFlag> getByFlagKeys(List<String> flagKeys) {
+        var flags = featureFlagRepository.findByFlagKeyIn(flagKeys);
+
+        if (flags.size() != flagKeys.size()) {
+            Set<String> flagNames = flags.stream()
+                    .map(FeatureFlag::getName)
+                    .collect(Collectors.toSet());
+
+            var notFoundList = flagKeys.stream()
+                    .filter(flag -> flagNames.contains(flag))
+                    .collect(Collectors.toList());
+
+            throw new FlagForgeNotFoundException(
+                    "The following Feature flag not found: " + String.join(", ", notFoundList));
+        }
+
+        return flags;
     }
 
     public FeatureFlag getById(UUID id) {
