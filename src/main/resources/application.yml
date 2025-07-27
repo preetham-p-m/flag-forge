@@ -1,13 +1,16 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/flag_forge
+    url: jdbc:postgresql://localhost:5432/flagforge
     username: user
     password: user_password
     driver-class-name: org.postgresql.Driver
 
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:

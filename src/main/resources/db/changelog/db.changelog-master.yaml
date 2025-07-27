@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: "00001"
+      author: preetham
+      changes:
+        - sqlFile:
+            path: sql/V00001_create_customer_and_user_table.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: "00002"
+      author: preetham
+      changes:
+        - sqlFile:
+            path: sql/V00002_create_feature_flags_table.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: "00003"
+      author: preetham
+      changes:
+        - sqlFile:
+            path: sql/V00003_create_flag_rule_table.sql
+            relativeToChangelogFile: true
